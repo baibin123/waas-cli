@@ -1,0 +1,16 @@
+{
+  "name": "root",
+  "private": true,
+  "workspaces": [
+    "core/*",
+    "models/*",
+    "utils/*",
+    "commands/*"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "@waas-cli/core": "^1.0.0"
+  }
+}
