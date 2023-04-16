@@ -1,0 +1,29 @@
+{
+  "name": "@waas-cli/log",
+  "version": "1.0.0",
+  "description": "> TODO: description",
+  "author": "白斌 <bin.bai@missionpublic.com>",
+  "homepage": "https://github.com/baibin123/waas-cli#readme",
+  "license": "ISC",
+  "main": "lib/index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/baibin123/waas-cli.git"
+  },
+  "scripts": {
+    "test": "node ./__tests__/log.test.js"
+  },
+  "bugs": {
+    "url": "https://github.com/baibin123/waas-cli/issues"
+  },
+  "dependencies": {
+    "npmlog": "^7.0.1"
+  }
+}

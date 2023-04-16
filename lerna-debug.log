@@ -1,0 +1,16 @@
+0 silly argv {
+0 silly argv   _: [ 'add' ],
+0 silly argv   globs: [ 'core/cli' ],
+0 silly argv   lernaVersion: '6.6.1',
+0 silly argv   '$0': 'lerna',
+0 silly argv   pkg: 'axios'
+0 silly argv }
+1 notice cli v6.6.1
+2 verbose rootPath /Users/baibin/Desktop/waas-cli
+3 error FetchError: request to https://registry.npmjs.org/axios failed, reason: read ECONNRESET
+3 error     at ClientRequest.<anonymous> (/Users/baibin/.nvm/versions/node/v18.15.0/lib/node_modules/lerna/node_modules/minipass-fetch/lib/index.js:130:14)
+3 error     at ClientRequest.emit (node:events:513:28)
+3 error     at TLSSocket.socketErrorListener (node:_http_client:502:9)
+3 error     at TLSSocket.emit (node:events:525:35)
+3 error     at emitErrorNT (node:internal/streams/destroy:151:8)
+3 error     at emitErrorCloseNT (node:internal/streams/destroy:116:3)
