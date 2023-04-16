@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 const importLocal = require('import-local')
-const log = require('npmlog')
+const log = require('@waas-cli/log')
 
 if (importLocal(__filename)) {
     log.info('cli', '正在使用 waas-cli 本地版本')
