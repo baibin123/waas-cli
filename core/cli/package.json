@@ -5,7 +5,7 @@
   "author": "白斌 <bin.bai@missionpublic.com>",
   "homepage": "",
   "license": "ISC",
-  "main": "lib/core.js",
+  "main": "lib/index.js",
   "bin": {
     "waas-cli": "bin/index.js"
   },
@@ -20,15 +20,19 @@
     "test": "node ./__tests__/core.test.js"
   },
   "dependencies": {
+    "@waas-cli/exec": "file:../exec",
     "@waas-cli/get-npm-info": "file:../../utils/get-npm-info",
+    "@waas-cli/init": "file:../../commands/init",
     "@waas-cli/log": "1.0.0",
     "colors": "^1.4.0",
+    "commander": "^10.0.1",
     "dotenv": "^16.0.3",
     "esm": "^3.2.25",
     "import-local": "^3.1.0",
-    "minimist": "^1.2.8",
+    "npminstall": "^7.9.0",
     "npmlog": "^7.0.1",
     "path-exists": "^5.0.0",
+    "pkg-dir": "^7.0.0",
     "root-check": "^2.0.0",
     "semver": "^7.3.8",
     "user-home": "^3.0.0"

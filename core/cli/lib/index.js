@@ -1,27 +1,78 @@
 const semver = require('semver')
 const colors = require('colors/safe');
-const pkg = require('../package.json')
-const log = require('@waas-cli/log')
-const constant = require('./const')
 const userHomer = require('user-home')
 const path = require("path");
-const argv = require('minimist')(process.argv.slice(2));
 const dotEnv = require('dotenv')
-const { getNpmVersions, getNpmSemverVersion } = require('@waas-cli/get-npm-info')
-
+const { program } = require('commander');
+const { getNpmSemverVersion } = require('@waas-cli/get-npm-info')
+const constant = require('./const')
+const log = require('@waas-cli/log')
+const exec = require('@waas-cli/exec')
+const init = require('@waas-cli/init')
+const pkg = require('../package.json')
 
 async function core() {
+  try {
+    await prepare()
+    registerCommand()
+  } catch (e){
+    log.error('cli', e.message)
+  }
+}
+
+async function prepare(){
   try {
     checkNodeVersion()
     checkPkgVersion()
     checkRoot()
     checkUserHome()
-    checkInputArgs()
     checkEnv()
     await checkGlobalUpdate()
   } catch (e){
     log.error('cli', e.message)
   }
+}
+
+function registerCommand(){
+  program
+      .name(Object.keys(pkg.bin)[0])
+      .usage(`<command> [options]`)
+      .version(pkg.version)
+      .option('-d --debug', '是否开启调试模式', false)
+      .option('-tp --targetPath <targetPath>', '是否指定本地调试文件路径', '')
+
+
+  program.command('init [projectName]')
+      .option('-f --force', '是否强制初始化项目')
+      .action(exec)
+
+  //debug 命令实现
+  program.on('option:debug', function (){
+    if (this.opts().debug) {
+      process.env.LOG_LEVEL = 'verbose'
+    } else {
+      process.env.LOG_LEVEL = 'info'
+    }
+    log.level = process.env.LOG_LEVEL
+    log.verbose('测试代码')
+  })
+
+  //
+  program.on('option:targetPath', function (){
+    process.env.CLI_TARGET_PATH = program.opts().targetPath
+  })
+
+  //所有命令监听
+  program.on('command:*', function (obj){
+    const availableCommand = program.commands.map(cmd => cmd.name()).join(',')
+    log.error(colors.red(`未知命令: ${obj[0]}`))
+    log.info(colors.green(`可用命令: ${availableCommand}`))
+  })
+  //当用户不输入任何命令时，打印帮助文档
+  if (process.argv.length < 1) {
+    program.outputHelp()
+  }
+  program.parse(process.argv);
 }
 
 function checkPkgVersion(){
@@ -49,19 +100,6 @@ function checkUserHome(){
       throw new Error(colors.red('当前登录用户主目录不存在！'))
     }
   })
-}
-
-function checkInputArgs(){
-  checkDebugArg()
-}
-
-function checkDebugArg(){
-  if (argv.debug){
-    process.env.LOG_LEVEL = 'verbose'
-  } else {
-    process.env.LOG_LEVEL = 'info'
-  }
-  log.level = process.env.LOG_LEVEL
 }
 
 function checkEnv(){

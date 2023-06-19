@@ -1,4 +1,4 @@
 node_modules/
 .idea
 core/**/node_modules/
-./package-lock.json
+./index-lock.json

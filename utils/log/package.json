@@ -24,6 +24,8 @@
     "url": "https://github.com/baibin123/waas-cli/issues"
   },
   "dependencies": {
-    "npmlog": "^7.0.1"
+    "npminstall": "^7.9.0",
+    "npmlog": "^7.0.1",
+    "pkg-dir": "^7.0.0"
   }
 }
