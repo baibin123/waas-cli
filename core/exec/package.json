@@ -1,0 +1,34 @@
+{
+  "name": "@waas-cli/exec",
+  "version": "1.0.0",
+  "description": "> TODO: description",
+  "author": "白斌 <bin.bai@missionpublic.com>",
+  "homepage": "https://github.com/baibin123/waas-cli#readme",
+  "license": "ISC",
+  "main": "lib/index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/baibin123/waas-cli.git"
+  },
+  "scripts": {
+    "test": "node ./__tests__/@waas-cli/exec.test.js"
+  },
+  "bugs": {
+    "url": "https://github.com/baibin123/waas-cli/issues"
+  },
+  "dependencies": {
+    "@waas-cli/package": "file:../../models/package",
+    "npminstall": "^7.9.0",
+    "pkg-dir": "^7.0.0"
+  }
+}
